@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en"> 
+    <head>
+        <meta charset="utf-8">
+        
+        <title>
+            {% block title %}
+            Say Something
+            {% endblock %}
+        </title>
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    </head>
+    <body>
+        <main>
+            <header>
+                <h1>
+                    <a href=" {{ url_for('index') }}"><strong>Say Something</strong></a>
+                    <small>to the world</small>
+                </h1>
+            </header>
+            {% for message in get_flashed_messages() %}
+            <div>
+                <button>&times;</button>
+                {{ message }}
+            </div>
+            {% endfor %}
+            {% block content %}{% endblock %}
+            
+            <footer>
+                {% block footer%}
+                <small>&copy; 2020 <a href="https://github.com/RickWeng/">Retro Lab</a></small>
+                {% endblock %}
+            </footer>
+            
+        </main>
+    </body>
+</html>

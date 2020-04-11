@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% from 'macros.html' import form_field %}
+
+{% block content %}
+<div>
+    <form method="post" action="{{ request.full_path }}">
+        {{ form.csrf_token }}
+        <div>
+            {{ form_field(form.name) }}
+        </div>
+        <div>
+            {{ form_field(form.body) }}
+        </div>
+        {{ form.submit }}
+    </form>
+</div>
+<h5>
+    {{ messages|length }} messages
+</h5>
+<div>
+    {% for message in messages %}
+    <a>
+        <div>
+            <h5>{{ message.name }}
+            </h5>
+        </div>
+        <p>{{ message.body }}</p>
+    </a>
+    {% endfor %}
+</div>
+{% endblock %}
